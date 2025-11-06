@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 600;
@@ -13,4 +13,124 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} */
+@theme {
+  --color-light-blue: #41d8e0;
+  --color-dark-blue: #005c71;
+  --color-marine: #43a0ea;
+  --color-pink: #9D53EC;
+  --color-dark-pink: #7b3cb0;
+  --color-light-rosa: #f796bd;
+  --color-rosa: #f6459f;
+  --color-blue-glow: rgba(94, 231, 223);
+  --color-purple: #7f7dd1;
+  --color-white: #ffffff;
+  --color-gray: #f0f0f0;
+  --color-black: #000000;
+
+  /* Typografie */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 2rem;
+  --text-h3: 1.5rem;
 }
+
+@layer base {
+  body {
+    @apply min-h-screen transition-colors duration-700;
+    background: linear-gradient(-45deg,
+      var(--color-pink),
+      var(--color-light-blue),
+      var(--color-purple),
+      var(--color-marine)
+    );
+    background-size: 300% 300%;
+    animation: bgGradientShift 15s ease infinite;
+  }
+
+  h2 {
+    @apply text-h2 font-semibold text-purple;
+  }
+
+  h3 {
+    @apply text-white font-semibold text-lg mb-1;
+  }
+
+  p{
+    @apply text-white whitespace-pre-wrap;
+  }
+
+  label {
+    @apply font-medium text-purple;
+  }
+
+  button {
+    @apply bg-linear-to-bl
+     from-pink to-light-blue
+      hover:from-light-blue hover:to-pink 
+       outline
+       focus:outline-marine
+       px-4 py-2 rounded-lg text-white 
+       font-semibold 
+       transition duration-500 
+       transform hover:scale-105;
+  }
+
+  input,
+  textarea {
+    @apply px-3 py-2 rounded-lg  border-none
+    outline outline-white
+    focus:outline-marine
+    transition duration-300
+    w-full;
+  }
+}
+
+@layer components {
+  .todo-item {
+    @apply p-5 rounded-2xl text-left
+    min-w-full break-all whitespace-pre-wrap
+    shadow-md hover:shadow-[0_0_20px_4px_rgba(94,231,223,0.3)]
+    transition duration-300 ease-in-out
+    hover:scale-[1.02];
+  }
+}
+
+@layer utilities {
+  @keyframes glow {
+
+    0% {
+      box-shadow: 0 0 10px 2px rgba(94, 231, 223, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px 5px rgba(94, 231, 223, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 10px 2px rgba(94, 231, 223, 0.4);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 4s ease-in-out infinite;
+  }
+  
+  @keyframes bgGradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-gray)
+  }
+}
+

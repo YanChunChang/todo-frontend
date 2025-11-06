@@ -16,21 +16,31 @@ export default function TodoPage() {
     }
 
     return (
-        <div className=" bg-gray-50 p-10 rounded-2xl " >
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-[400px_minmax(0,1fr)]">
+        <div className="container mx-auto bg-gray-100 p-10 mt-10 rounded-2xl " >
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 
                 {/* To-Do Liste */}
-                <aside className="rounded-2xl bg-white p-4 shadow h-auto md:h-[80vh] md:flex md:flex-col">
-                    <h2 className="mb-2 text-gray-600 text-lg font-semibold">Deine Aufgaben</h2>
+                <aside className="rounded-2xl bg-white p-4 shadow-lg h-auto md:h-[80vh] md:flex md:flex-col">
+                    <h2 className="mb-2">Deine Aufgaben</h2>
 
                     {/* für leere Liste */}
-                    <div className="mt-2 md:flex-1 md:overflow-auto">
+                    <div className="mt-2 md:flex-1 md:overflow-auto custom-scrollbar">
                         <div className="grid gap-2 px-2 py-2">
-                            {todos.map(todo => (
-                                <div className='bg-sky-600 rounded-lg p-4 text-left' key={todo.id}>
-                                    <h3>Titel: {todo.title}</h3>
-                                    <p>Bschreibung: <br />{todo.description}</p>
-                                </div>
+                            {todos.map((todo, index) => (
+                               <div
+                               key={todo.id}
+                               className={`todo-item ${
+                                 index % 2 === 0
+                                   ? "bg-linear-to-br from-light-blue to-marine"
+                                   : "bg-linear-to-br from-light-rosa to-purple"
+                               }`}
+                             >
+                               <h3>Titel: {todo.title}</h3>
+                               <p>
+                                 Beschreibung:<br />
+                                 {todo.description}
+                               </p>
+                             </div>
                             ))}
                         </div>
                         {todos.length === 0 && (
@@ -40,7 +50,7 @@ export default function TodoPage() {
                 </aside>
 
                 {/* Aufgaben erstellen */}
-                <main className="rounded-2xl bg-white p-6 shadow">
+                <main className="rounded-2xl shadow-lg bg-white p-6 shadow">
                     <TodoForm onCreate={handleCreate} />
                 </main>
             </div>

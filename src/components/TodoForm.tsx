@@ -1,6 +1,6 @@
 import type { Todo } from '../models/types';
 import { useState } from 'react';
-
+ 
 
 interface Props {
     onCreate?: (todoData: Omit<Todo, 'id' | 'created_at'>) => void;
@@ -32,13 +32,13 @@ export default function TodoForm({ onCreate }: Props) {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <h2 className="mb-2 text-gray-600 text-lg font-semibold">Aufgaben erstellen</h2>
+            <h2 className="mb-2">Aufgaben erstellen</h2>
             <div>
-                <label className=" block mb-3 font-medium text-gray-700" htmlFor="title">
+                <label className=" block mb-4" htmlFor="title">
                     Titel*
                 </label>
                 <input
-                    className="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="animate-glow"
                     type="text"
                     id="title"
                     name="title"
@@ -51,11 +51,11 @@ export default function TodoForm({ onCreate }: Props) {
             </div>
 
             <div>
-                <label className="block mb-3 font-medium text-gray-700" htmlFor="description">
+                <label className="block mb-4" htmlFor="description">
                     Beschreibung
                 </label>
                 <textarea
-                    className="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="animate-glow"
                     id="description"
                     name="description"
                     rows={4}
@@ -64,12 +64,12 @@ export default function TodoForm({ onCreate }: Props) {
                     placeholder="Gib eine Beschreibung für deine Aufgabe ein"
                 ></textarea>
             </div>
-            <small className="text-gray-500 self-start">* Pflichtfeld</small>
+            <small className="text-purple self-start">* Pflichtfeld</small>
 
             <div className='flex flex-col gap-4 justify-center md:flex-row'>
                 <button
                     type="submit"
-                    className="self-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="self-center animate-glow"
                 >
                     Speichern
                 </button>
@@ -79,10 +79,11 @@ export default function TodoForm({ onCreate }: Props) {
                         setTitle('');
                         setDescription('');
                     }}
-                    className="self-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="self-center animate-glow"
                 >
                     Zurücksetzen
                 </button>
+
             </div>
 
         </form>
